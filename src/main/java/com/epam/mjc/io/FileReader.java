@@ -1,25 +1,36 @@
 package com.epam.mjc.io;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FileReader {
 
     public Profile getDataFromFile(File file){
         String string ="";
+        java.io.FileReader reader = null;
         try{
-            java.io.FileReader reader = new java.io.FileReader("src/test/resources/test.txt");
+            reader = new java.io.FileReader(file.getAbsoluteFile());
             int data = reader.read();
             while(data !=-1){
                 string +=(char) data;
                 data = reader.read();
             }
-            reader.close();
-
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         catch (IOException e){
             e.printStackTrace();
         }
+        finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                System.out.println("no");
+            }
+        }
+
 
         String[] values = new String[4];
         int j = 0;
@@ -36,4 +47,5 @@ public class FileReader {
 
         return new Profile(name,age,email,phone);
     }
+
 }
