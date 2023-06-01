@@ -1,7 +1,5 @@
 package com.epam.mjc.io;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Objects;
 import java.io.FileReader;
 
