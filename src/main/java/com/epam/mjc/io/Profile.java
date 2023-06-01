@@ -1,6 +1,9 @@
 package com.epam.mjc.io;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Objects;
+import java.io.FileReader;
 
 public class Profile {
 
@@ -18,6 +21,8 @@ public class Profile {
         this.email = email;
         this.phone = phone;
     }
+
+    FileReader in = null;
 
     public String getName() {
         return name;
@@ -81,4 +86,5 @@ public class Profile {
     public int hashCode() {
         return Objects.hash(getName(), getAge(), getEmail(), getPhone());
     }
+
 }
