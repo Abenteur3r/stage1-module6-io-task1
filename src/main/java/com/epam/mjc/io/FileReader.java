@@ -17,17 +17,15 @@ public class FileReader {
                 data = reader.read();
             }
         }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
         catch (IOException e){
             e.printStackTrace();
         }
         finally {
-            try {
+            try{
                 reader.close();
-            } catch (IOException e) {
-                System.out.println("no");
+            }
+            catch (IOException e){
+                e.printStackTrace();
             }
         }
 
