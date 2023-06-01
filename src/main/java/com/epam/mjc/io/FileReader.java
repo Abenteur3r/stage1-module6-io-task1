@@ -6,31 +6,21 @@ import java.io.IOException;
 public class FileReader {
 
     public Profile getDataFromFile(File file) {
-        String string = "";
-        java.io.FileReader reader = null;
-        try {
-            reader = new java.io.FileReader(file.getAbsoluteFile());
+        StringBuilder string = new StringBuilder();
+        try (java.io.FileReader reader = new java.io.FileReader(file.getAbsolutePath())){
             int data = reader.read();
             while (data != -1) {
-                string += (char) data;
+                string.append((char) data);
                 data = reader.read();
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
 
         String[] values = new String[4];
         int j = 0;
-        for (String i : string.split("\n")) {
+        for (String i : string.toString().split("\n")) {
             int start = i.indexOf(": ") + 1;
             String value = i.substring(start).trim();
             values[j] = value;
